@@ -44,12 +44,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Slf4j
 public class ViewControllerTest {
 
-    @GetMapping("users/profile")
-    public String profileForm() {
-        log.info("get users/profile");
 
-        return "users/profile";
-    }
 
 
 

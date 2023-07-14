@@ -1,0 +1,63 @@
+/* 메인 바디 */
+.main {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f2f2f2;
+}
+
+/* 메인 타이틀 */
+h1 {
+  color: #333;
+  margin-top: 50px;
+  font-size: 32px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* 메인 버튼 */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  margin-top: 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* 메인 버튼 마우스오버 */
+.btn:hover {
+  background-color: #555;
+}
+
+/* 메인 애니메이션 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 게시글 리스트 스타일 */
+.board-list {
+  margin-top: 30px;
+}
+
+.board-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.board-item h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.board-item p {
+  font-size: 14px;
+  color: #666;
+}
