@@ -8,6 +8,6 @@ import lombok.Setter;
 public class WriteSearch {
 
     private String username; // 사용자 이름
-    private WriteStatus writeStatus; // 게시글 작성 상태[WRITE, CANCEL]
+    private WriteStatus writeStatus; // 게시글 작성 상태[write, cancel]
 
 }

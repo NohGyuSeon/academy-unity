@@ -3,11 +3,8 @@ package com.daonplace.springbootweb.service.admin;
 import com.daonplace.springbootweb.domain.admin.Admin;
 import com.daonplace.springbootweb.domain.admin.Magazine;
 import com.daonplace.springbootweb.domain.admin.Publish;
-import com.daonplace.springbootweb.repository.admin.AdminRepository;
-import com.daonplace.springbootweb.repository.admin.MagazineRepository;
+import com.daonplace.springbootweb.handler.ex.NotFoundException;
 import com.daonplace.springbootweb.repository.admin.PublishRepository;
-import com.daonplace.springbootweb.repository.admin.PublishSearch;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,8 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class PublishService {
 
     private final PublishRepository publishRepository;
-    private final AdminRepository adminRepository;
-    private final MagazineRepository magazineRepository;
+    private final AdminService adminService;
+    private final MagazineService magazineService;
 
     /**
      * 메거진 발행
@@ -28,8 +25,9 @@ public class PublishService {
     public Long publish(Long adminId, Long magazineId) {
 
         // 엔티티 조회
-        Admin admin = adminRepository.findOne(adminId);
-        Magazine magazine = magazineRepository.findOne(magazineId);
+        Admin admin = adminService.getAdminById(adminId);
+
+        Magazine magazine = magazineService.getMagazineById(magazineId);
 
         // 메거진 발행
         Publish publish = Publish.createPublish(admin, magazine);
@@ -45,12 +43,16 @@ public class PublishService {
      */
     public void cancelPublish(Long publishId) {
         // 메거진 발행 엔티티 조회
-        Publish publish = publishRepository.findOne(publishId);
+        Publish publish = getPublishById(publishId);
 
         // 메거진 발행 취소
         publish.cancel();
     }
 
-//    public List<Publish> findPublishes(PublishSearch publishSearch) {}\
+    // 발행 조회
+    protected Publish getPublishById(Long publishId) {
+        return publishRepository.findById(publishId)
+            .orElseThrow(() -> new NotFoundException("존재하지 않는 발행입니다."));
+    }
 
 }

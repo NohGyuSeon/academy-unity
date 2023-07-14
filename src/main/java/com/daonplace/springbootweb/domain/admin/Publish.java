@@ -57,7 +57,7 @@ public class Publish {
         publish.setAdmin(admin);
         publish.setMagazine(magazine);
 
-        publish.setStatus(PublishStatus.PUBLISH);
+        publish.setStatus(PublishStatus.publish);
         publish.setPublishDate(LocalDateTime.now());
 
         magazine.countUp();
@@ -70,7 +70,7 @@ public class Publish {
      * 메거진 작성 취소
      */
     public void cancel() {
-        this.setStatus(PublishStatus.CANCEL);
+        this.setStatus(PublishStatus.cancel);
         getMagazine().countDown();
     }
 

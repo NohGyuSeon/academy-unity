@@ -1,9 +1,9 @@
 package com.daonplace.springbootweb.service.admin;
 
 import com.daonplace.springbootweb.domain.admin.Admin;
-import com.daonplace.springbootweb.exception.DuplicateAdminException;
+import com.daonplace.springbootweb.handler.ex.DuplicateAdminException;
+import com.daonplace.springbootweb.handler.ex.NotFoundException;
 import com.daonplace.springbootweb.repository.admin.AdminRepository;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,20 +26,17 @@ public class AdminService {
     }
 
     private void validationDuplicateAdmin(Admin admin) {
-        List<Admin> findAdmins = adminRepository.findByEmail(admin.getEmail());
-        if (!findAdmins.isEmpty()) {
+        Admin findAdmin = getAdminById(admin.getId());
+
+        if (findAdmin != null) {
             throw new DuplicateAdminException("이미 존재하는 관리자입니다.");
         }
     }
 
-    // 관리자 전체 조회
-    public List<Admin> findAdmins() {
-        return adminRepository.findAll();
-    }
-
-    // 사용자 개별 조회
-    public Admin findOne(Long id) {
-        return adminRepository.findOne(id);
+    // 관리자 조회
+    protected Admin getAdminById(Long adminId) {
+        return adminRepository.findById(adminId)
+            .orElseThrow(() -> new NotFoundException("존재하지 않는 관리자입니다."));
     }
 
 }

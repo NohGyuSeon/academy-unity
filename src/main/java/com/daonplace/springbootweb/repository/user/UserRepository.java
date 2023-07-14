@@ -14,7 +14,7 @@ public class UserRepository {
     private final EntityManager em;
 
     public void save(User user) {
-        user.setStatus(UserStatus.REGISTERED);
+        user.setStatus(UserStatus.registered);
         em.persist(user);
     }
 
@@ -30,6 +30,12 @@ public class UserRepository {
     public List<User> findByEmail(String email) {
         return em.createQuery("select user from User user where user.email = :email", User.class)
             .setParameter("email", email)
+            .getResultList();
+    }
+
+    public List<User> findByUsername(String username) {
+        return em.createQuery("select user from User user where user.username = :username", User.class)
+            .setParameter("username", username)
             .getResultList();
     }
 

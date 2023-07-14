@@ -1,24 +1,8 @@
 package com.daonplace.springbootweb.repository.admin;
 
 import com.daonplace.springbootweb.domain.admin.Publish;
-import javax.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-@RequiredArgsConstructor
-public class PublishRepository {
-
-    private final EntityManager em;
-
-    public void save(Publish publish) {
-        em.persist(publish);
-    }
-
-    public Publish findOne(Long id) {
-        return em.find(Publish.class, id);
-    }
-
-//    public List<Publish> findAllByString(PublishSearch publishSearch) {}
+public interface PublishRepository extends JpaRepository<Publish, Long> {
 
 }

@@ -1,4 +1,4 @@
-package com.daonplace.springbootweb.controller;
+package com.daonplace.springbootweb.controller.user;
 
 import com.daonplace.springbootweb.domain.user.User;
 import com.daonplace.springbootweb.dto.auth.SignupDto;

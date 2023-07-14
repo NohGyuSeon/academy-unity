@@ -1,4 +1,4 @@
-package com.daonplace.springbootweb.exception;
+package com.daonplace.springbootweb.handler.ex;
 
 public class DuplicateUserException extends RuntimeException {
 

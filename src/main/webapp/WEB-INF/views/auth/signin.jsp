@@ -32,7 +32,7 @@
                         <button>로그인</button>
                     </form>
                     <!--로그인 인풋 종료-->
-
+                    
                     <!--또는 시작-->
                     <div class="login__horizon">
                         <div class="br"></div>

@@ -2,7 +2,7 @@ package com.daonplace.springbootweb.service.user;
 
 import com.daonplace.springbootweb.domain.user.User;
 import com.daonplace.springbootweb.domain.user.UserStatus;
-import com.daonplace.springbootweb.exception.DuplicateUserException;
+import com.daonplace.springbootweb.handler.ex.DuplicateUserException;
 import com.daonplace.springbootweb.repository.user.UserRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -35,9 +35,9 @@ public class UserService {
     }
 
     private void validationUserStatus(User user) {
-        if (user.getStatus() == UserStatus.WITHDRAWN) {
+        if (user.getStatus() == UserStatus.withdrawn) {
             throw new DuplicateUserException("탈퇴한 사용자입니다.");
-        } else if (user.getStatus() == UserStatus.DORMANT) {
+        } else if (user.getStatus() == UserStatus.dormant) {
             throw new DuplicateUserException("휴먼상태 사용자입니다.");
         }
     }

@@ -12,28 +12,22 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
-    BCryptPasswordEncoder encode() {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        super.configure(http);
-
-        http.csrf().disable(); // CSRF 토큰 검사를 비활성화
-
-        http.authorizeRequests() // 이 주소경로로 요청이 들어오면
-            .antMatchers("/", "/user/**", "/admin/**")
-            .authenticated() // 인증이 필요하다.
-            .anyRequest() // 그 외의 요청들은
-            .permitAll() // 모두 허용한다.
-            .and() // 그리고
-            .formLogin() // 로그인(인증)이 필요한 요청이 들어오면
-            .loginPage("/auth/signin") // 로그인 페이지 auth/signin 으로 이동시키고
-            .defaultSuccessUrl("/"); // 인증이 정성적으로 완료되면 / 로 이동한다.
+        http.csrf().disable() // CSRF 토큰 검사를 비활성화
+            .authorizeRequests() // 인가 설정
+            .antMatchers("/", "/user/**", "/admin/**").authenticated() // 해당 경로는 인증이 필요함
+            .anyRequest().permitAll() // 그 외의 요청은 허용
+            .and()
+            .formLogin() // 폼 로그인 활성화
+            .loginPage("/auth/signin") // 로그인 페이지 설정
+            .loginProcessingUrl("/auth/signin") // 로그인 처리 URL
+            .defaultSuccessUrl("/") // 로그인 성공 시 이동할 페이지
+            .usernameParameter("email");
     }
-
-
-
 
 }

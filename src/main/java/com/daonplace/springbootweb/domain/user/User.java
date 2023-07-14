@@ -1,6 +1,8 @@
 package com.daonplace.springbootweb.domain.user;
 
-import java.time.LocalDateTime;
+import static javax.persistence.FetchType.LAZY;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
@@ -11,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.PrePersist;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,16 +40,11 @@ public class User {
     private String username;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "user_status")
     private UserStatus status;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = LAZY)
+    @JsonIgnoreProperties({"user"})
     private List<Write> Writes = new ArrayList<>();
-
-    private LocalDateTime createDate;   // 데이터가 입력된 시간
-
-    @PrePersist
-    public void createDate() {
-        this.createDate = LocalDateTime.now();
-    }
 
 }

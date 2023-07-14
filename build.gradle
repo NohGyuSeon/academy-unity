@@ -39,7 +39,8 @@ dependencies {
 	implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 
 	testImplementation 'junit:junit:4.13.2'
-	runtimeOnly 'com.mysql:mysql-connector-j'
+	runtimeOnly 'com.mysql:mysql-connector-j' // 개발 환경 DB(MySQL)
+	runtimeOnly 'com.h2database:h2' // 테스트 환경 DB(H2)
 	annotationProcessor('org.projectlombok:lombok')
 	testAnnotationProcessor('org.projectlombok:lombok')
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

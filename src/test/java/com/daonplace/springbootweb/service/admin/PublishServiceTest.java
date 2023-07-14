@@ -27,9 +27,6 @@ public class PublishServiceTest {
     @Autowired
     PublishService publishService;
 
-    @Autowired
-    PublishRepository publishRepository;
-
     @Test(timeout = 1000)
     public void 메거진_작성() throws Exception {
         //given
@@ -40,9 +37,9 @@ public class PublishServiceTest {
         Long publishId = publishService.publish(admin.getId(), magazine.getId());
 
         //then
-        Publish getPublish = publishRepository.findOne(publishId);
+        Publish getPublish = publishService.getPublishById(publishId);
 
-        assertEquals(PublishStatus.PUBLISH, getPublish.getStatus(), "메거진 발행시 상태는 PUBLISH");
+        assertEquals(PublishStatus.publish, getPublish.getStatus(), "메거진 발행시 상태는 PUBLISH");
         assertEquals(1, getPublish.getMagazine().getCount(), "메거진 발행시 개수는 1개");
         assertNotNull(magazine);
     }
@@ -59,9 +56,9 @@ public class PublishServiceTest {
         publishService.cancelPublish(publishId);
 
         //then
-        Publish getPublish = publishRepository.findOne(publishId);
+        Publish getPublish = publishService.getPublishById(publishId);
 
-        assertEquals(PublishStatus.CANCEL, getPublish.getStatus(), "메거진 취소시 상태는 CANCEL 이다.");
+        assertEquals(PublishStatus.cancel, getPublish.getStatus(), "메거진 취소시 상태는 CANCEL 이다.");
         assertEquals(0, getPublish.getMagazine().getCount(), "메거진 취소시 개수는 0개");
     }
 
