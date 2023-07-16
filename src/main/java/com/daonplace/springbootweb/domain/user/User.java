@@ -1,10 +1,9 @@
 package com.daonplace.springbootweb.domain.user;
 
-import static javax.persistence.FetchType.LAZY;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.daonplace.springbootweb.domain.user.board.Board;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -43,8 +42,16 @@ public class User {
     @Column(name = "user_status")
     private UserStatus status;
 
-    @OneToMany(mappedBy = "user", fetch = LAZY)
-    @JsonIgnoreProperties({"user"})
-    private List<Write> Writes = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Board> boards = new ArrayList<>();
 
+    public void addBoard(Board board) {
+        boards.add(board);
+        board.setUser(this);
+    }
+
+    public void removeBoard(Board board) {
+        boards.remove(board);
+        board.setUser(null);
+    }
 }

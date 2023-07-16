@@ -1,32 +1,18 @@
 package com.daonplace.springbootweb.repository.user;
 
 import com.daonplace.springbootweb.domain.user.board.Board;
+import com.daonplace.springbootweb.domain.user.board.BoardType;
 import java.util.List;
-import javax.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RequiredArgsConstructor
-public class BoardRepository {
+public interface BoardRepository extends JpaRepository<Board, Long> {
 
-    private final EntityManager em;
+    List<Board> findByBoardType(BoardType boardType);
 
-    public void save(Board board) {
-        if (board.getId() == null) {
-            em.persist(board);
-        } else {
-            em.merge(board);
-        }
-    }
+    List<Board> findAllByBoardType(BoardType boardType);
 
-    public Board findOne(Long id) {
-        return em.find(Board.class, id);
-    }
-
-    public List<Board> findAll() {
-        return em.createQuery("select board from Board board", Board.class)
-            .getResultList();
-    }
+    List<Board> findByTitleContaining(String keyword);
 
 }

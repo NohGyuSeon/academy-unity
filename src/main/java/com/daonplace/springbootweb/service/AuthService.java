@@ -28,7 +28,7 @@ public class AuthService {
 
         // 회원가입 진행
         Long saveId = userService.join(user);
-        User findOne = userRepository.findOne(saveId);
+        User findOne = userService.getUserById(saveId);
 
         return findOne;
     }

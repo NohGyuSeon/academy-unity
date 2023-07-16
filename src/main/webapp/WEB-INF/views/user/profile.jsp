@@ -86,11 +86,11 @@
 <%--</section>--%>
 
 <!--로그아웃, 회원정보변경 모달-->
-<div class="modal-info" onclick="modalInfo()">
+<div class="modal-info" onclick="modaalInfo()">
 	<div class="modal">
 		<button class="btn" onclick="location.href='/user/${dto.user.id}/update'">회원정보 변경</button>
 		<button class="btn" onclick="location.href='/logout'">로그아웃</button>
-		<button class="btn" onclick="closePopup('.modal-info')">취소</button>
+		<button class="btn" onclick="location.href='/'">취소버튼</button>
 	</div>
 </div>
 <!--로그아웃, 회원정보변경 모달 end-->

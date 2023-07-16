@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SignIn</title>
+    <title>로그인 페이지</title>
     <link rel="stylesheet" href="/css/style.css">
 <%--    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"--%>
 <%--          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />--%>
@@ -45,6 +45,12 @@
                     <!--보류-->
                     <!--Oauth 소셜로그인 종료-->
                 </div>
+
+                <!--비밀번호 찾기 시작-->
+                <div class="password__reset">
+                    <a href="/password">비밀번호 찾기</a>
+                </div>
+                <!--비밀번호 찾기 종료-->
 
                 <!--계정이 없으신가요? 시작-->
                 <div class="login__register">

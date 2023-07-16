@@ -1,5 +1,5 @@
 /* 메인 바디 */
-.main {
+body {
   font-family: Arial, sans-serif;
   text-align: center;
   background-color: #f2f2f2;
@@ -13,14 +13,21 @@ h1 {
   animation: fadeIn 1s ease-in-out;
 }
 
+/* 메인 버튼 컨테이너 */
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
 /* 메인 버튼 */
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #333;
+  background-color: #007bff;
   color: #fff;
   text-decoration: none;
-  margin-top: 20px;
+  margin: 0 10px;
   border-radius: 5px;
   font-size: 16px;
   transition: background-color 0.3s ease-in-out;
@@ -28,36 +35,61 @@ h1 {
 
 /* 메인 버튼 마우스오버 */
 .btn:hover {
-  background-color: #555;
+  background-color: #0056b3;
 }
 
-/* 메인 애니메이션 */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+/* 사용자 프로필 버튼 */
+.profile-btn {
+  background-color: #dc3545;
 }
 
-/* 게시글 리스트 스타일 */
-.board-list {
-  margin-top: 30px;
+.profile-btn:hover {
+  background-color: #c82333;
 }
 
-.board-item {
+/* 메인 드롭박스 컨테이너 */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* 메인 드롭박스 */
+.dropdown {
+  padding: 8px;
+  background-color: #fff;
   border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.board-item h3 {
-  font-size: 18px;
-  margin-bottom: 5px;
-}
-
-.board-item p {
+  border-radius: 5px;
   font-size: 14px;
-  color: #666;
+  margin-right: 10px;
+}
+
+/* 메인 검색 기능 */
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input[type="text"] {
+  padding: 8px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.search-bar button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.search-bar button:hover {
+  background-color: #0056b3;
 }

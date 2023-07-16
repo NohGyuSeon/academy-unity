@@ -144,7 +144,7 @@ button {
   color: #0095f6;
 }
 
-/* 버튼디자인 */
+/* 버튼 디자인 */
 .cta {
   margin-right: 10px;
   padding: 5px 9px;
@@ -159,4 +159,20 @@ button {
 .cta.blue {
   background: #0095f6 !important;
   color: #fff !important;
+}
+
+/* 비밀번호 찾기 */
+.password__reset {
+  padding: 10px 0;
+  text-align: center;
+  border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+  background-color: #fff;
+  margin-top: 10px;
+}
+
+/* 비밀번호 찾기 이동버튼 */
+.password__reset a {
+  color: #0095f6;
+  font-size: 14px;
+  font-weight: 200;
 }

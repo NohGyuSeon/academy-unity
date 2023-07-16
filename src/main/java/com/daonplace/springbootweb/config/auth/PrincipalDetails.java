@@ -1,9 +1,12 @@
 package com.daonplace.springbootweb.config.auth;
 
 import com.daonplace.springbootweb.domain.user.User;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Data
@@ -22,7 +25,10 @@ public class PrincipalDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_USER")); // 사용자 권한을 추가
+        // 다른 권한이 있을 경우, 추가로 authorities에 권한을 추가할 수 있음.
+        return authorities;
     }
 
     @Override
