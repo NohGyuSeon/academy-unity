@@ -45,13 +45,4 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Board> boards = new ArrayList<>();
 
-    public void addBoard(Board board) {
-        boards.add(board);
-        board.setUser(this);
-    }
-
-    public void removeBoard(Board board) {
-        boards.remove(board);
-        board.setUser(null);
-    }
 }

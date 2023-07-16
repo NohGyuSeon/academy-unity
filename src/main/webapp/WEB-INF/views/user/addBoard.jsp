@@ -31,6 +31,11 @@
                             <option value="parenting">육아</option>
                             <option value="alert">제보/알림</option>
                         </select>
+                        <select name="boardStatus" required="required">
+                            <option value="" disabled selected>게시글 상태 선택</option>
+                            <option value="write">작성</option>
+                            <option value="hold">보류</option>
+                        </select>
                         <button class="register-btn">등록</button>
                         <button class="cancel-btn" onclick="location.href='/'">취소</button>
                     </form>
@@ -40,47 +45,6 @@
         </section>
     </main>
 </div>
-<%--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--%>
-<%--<script>--%>
-<%--  $(document).ready(function() {--%>
-<%--    // 등록 버튼 클릭 시 AJAX 요청 전송--%>
-<%--    $(".register-btn").click(function(e) {--%>
-<%--      e.preventDefault(); // 기본 동작 방지 (페이지 새로고침 등)--%>
+</body>
 
-<%--      // 입력된 데이터 가져오기--%>
-<%--      var title = $("input[name='title']").val();--%>
-<%--      var content = $("textarea[name='content']").val();--%>
-<%--      var boardType = $("select[name='boardType']").val();--%>
-
-<%--      // AJAX 요청 설정--%>
-<%--      $.ajax({--%>
-<%--        url: "/user/addBoard",--%>
-<%--        type: "POST",--%>
-<%--        data: {--%>
-<%--          title: title,--%>
-<%--          content: content,--%>
-<%--          boardType: boardType--%>
-<%--        },--%>
-<%--        success: function(response) {--%>
-<%--          // 요청이 성공적으로 처리된 경우--%>
-<%--          if (response === "success") {--%>
-<%--            console.log("게시글 등록 성공");--%>
-<%--            // 페이지 리다이렉션--%>
-<%--            window.location.href = "/user/main";--%>
-<%--          } else {--%>
-<%--            console.log("게시글 등록 실패");--%>
-<%--            // 실패 처리 동작 구현--%>
-<%--          }--%>
-<%--        },--%>
-<%--        error: function(xhr, status, error) {--%>
-<%--          // 요청 처리 중 에러가 발생한 경우--%>
-<%--          console.log("게시글 등록 실패");--%>
-<%--          // 에러 처리 동작 구현--%>
-<%--        }--%>
-<%--      });--%>
-<%--    });--%>
-<%--  });--%>
-<%--</script>--%>
-<%--</body>--%>
-
-<%--</html>--%>
+</html>

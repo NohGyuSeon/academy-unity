@@ -1,3 +1,6 @@
+<%@ page import="com.daonplace.springbootweb.domain.user.board.Board" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.daonplace.springbootweb.domain.user.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,10 +21,12 @@
 
             <div class="buttons-container">
                 <!-- 게시글 등록 버튼 -->
-                <button class="btn add-board-btn" onclick="location.href='/user/addBoard'">게시글 등록</button>
+                <button class="btn add-board-btn" onclick="location.href='/user/addBoard'">게시글 등록
+                </button>
 
                 <!-- 사용자 프로필 버튼 -->
-                <button class="btn profile-btn" onclick="location.href='/user/profile'">사용자 프로필</button>
+                <button class="btn profile-btn" onclick="location.href='/user/profile'">사용자 프로필
+                </button>
             </div>
 
             <div class="search-container">
@@ -44,20 +49,23 @@
             <!-- 게시글 리스트 -->
             <div class="board-list">
                 <h2>게시글 리스트</h2>
-                <!-- 여기에 서버에서 가져온 게시글 데이터를 동적으로 나열하는 로직을 추가해야 합니다 -->
-                <!-- 예시: 서버에서 가져온 게시글 데이터를 반복문으로 출력하는 예시 코드 -->
-<%--                <c:forEach var="board" items="${boards}">--%>
-<%--                    <div class="board-item">--%>
-<%--                        <h3>${board.title}</h3>--%>
-<%--                        <p>${board.content}</p>--%>
-<%--&lt;%&ndash;                        <p>${board.status}</p> 보드 타입 정보&ndash;%&gt;--%>
-<%--                    </div>--%>
-<%--                </c:forEach> -->--%>
+                <ul id="board-list-container">
+                    <%-- 서버에서 가져온 게시글 데이터를 반복하여 출력하는 로직 --%>
+                    <% for (Board board : (List<Board>) request.getAttribute("boards")) { %>
+                    <% User user = (User) request.getAttribute("user"); %>
+                    <li>
+                        <h3> <a href="/user/board/<%= user.getId() %>/<%= board.getId() %>"><%= board.getTitle() %></a></h3>
+                        <p><%= board.getBoardType() %> | <%= board.getBoardStatus() %></p>
+                        <p><%= board.getContent() %></p>
+                    </li>
+                    <% } %>
+                </ul>
             </div>
+
         </section>
     </main>
 </div>
-<script src="/js/main.js"></script>
+<%--<script src="/js/main.js"></script>--%>
 </body>
 
 </html>

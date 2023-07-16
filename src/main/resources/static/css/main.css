@@ -3,6 +3,8 @@ body {
   font-family: Arial, sans-serif;
   text-align: center;
   background-color: #f2f2f2;
+  margin: 0; /* 바디 마진 제거 */
+  padding: 0; /* 바디 패딩 제거 */
 }
 
 /* 메인 타이틀 */
@@ -92,4 +94,34 @@ h1 {
 
 .search-bar button:hover {
   background-color: #0056b3;
+}
+
+/* 게시글 리스트 */
+.board-list {
+  text-align: left; /* 리스트 텍스트를 왼쪽 정렬 */
+  padding: 0; /* 리스트 패딩 제거 */
+  margin-top: 20px; /* 리스트 위쪽 마진 추가 */
+}
+
+/* 게시글 리스트 아이템 */
+.board-list li {
+  list-style: none; /* 리스트 아이템의 불릿 제거 */
+  background-color: #fff; /* 리스트 아이템 배경색 설정 */
+  padding: 10px; /* 리스트 아이템 패딩 설정 */
+  margin-bottom: 10px; /* 리스트 아이템 아래쪽 마진 설정 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 리스트 아이템 그림자 추가 */
+}
+
+.board-list h2 {
+  margin-left: 40px;
+}
+
+/* 게시글 제목 */
+.board-list li h3 {
+  margin: 0; /* 게시글 제목 마진 제거 */
+}
+
+/* 게시글 내용, 게시판 유형, 게시글 상태 */
+.board-list li p {
+  margin: 5px 0; /* 게시글 내용, 게시판 유형, 게시글 상태 위아래 마진 설정 */
 }

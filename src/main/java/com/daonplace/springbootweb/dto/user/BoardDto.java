@@ -1,6 +1,7 @@
 package com.daonplace.springbootweb.dto.user;
 
 import com.daonplace.springbootweb.domain.user.board.Board;
+import com.daonplace.springbootweb.domain.user.board.BoardStatus;
 import com.daonplace.springbootweb.domain.user.board.BoardType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -15,12 +16,15 @@ public class BoardDto {
     private String content;
     @NotNull
     private BoardType boardType;
+    @NotNull
+    private BoardStatus boardStatus;
 
     public Board toEntity() {
         return Board.builder()
             .title(title)
             .content(content)
             .boardType(boardType)
+            .boardStatus(boardStatus)
             .build();
     }
 

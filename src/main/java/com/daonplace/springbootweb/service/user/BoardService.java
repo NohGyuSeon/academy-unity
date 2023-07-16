@@ -2,7 +2,6 @@ package com.daonplace.springbootweb.service.user;
 
 import com.daonplace.springbootweb.domain.user.User;
 import com.daonplace.springbootweb.domain.user.board.Board;
-import com.daonplace.springbootweb.domain.user.board.BoardStatus;
 import com.daonplace.springbootweb.dto.user.BoardDto;
 import com.daonplace.springbootweb.handler.ex.CustomApiException;
 import com.daonplace.springbootweb.repository.user.BoardRepository;
@@ -27,6 +26,7 @@ public class BoardService {
         board.setTitle(boardDto.getTitle());
         board.setContent(boardDto.getContent());
         board.setBoardType(boardDto.getBoardType());
+        board.setBoardStatus(boardDto.getBoardStatus());
         board.setUser(user);
         board.countUp();
 
@@ -46,39 +46,20 @@ public class BoardService {
         board.setTitle(boardDto.getTitle());
         board.setContent(boardDto.getContent());
         board.setBoardType(boardDto.getBoardType());
+        board.setBoardStatus(boardDto.getBoardStatus());
 
         // 더티체킹으로 인한 자동 업데이트 완료 (JPA의 최대 장점)
         return board;
     }
 
     /**
-     * 게시글 취소
-     */
-    @Transactional
-    public void cancelBoard(Long boardId) {
-        Board board = getBoard(boardId);
-
-        board.setStatus(BoardStatus.cancel);
-    }
-
-    /**
-     * 게시글 복구
-     */
-    @Transactional
-    public void rollbackBoard(Long boardId) {
-        Board board = getBoard(boardId);
-
-        board.setStatus(BoardStatus.write);
-    }
-
-    /**
      * 게시글 삭제
      */
     @Transactional
-    public Long deleteBoard(Long boardId) {
-        boardRepository.deleteById(boardId);
+    public void deleteBoard(Long boardId) {
+        getBoard(boardId); // 먼저 게시글을 조회하여 존재하는지 확인
 
-        return boardId;
+        boardRepository.deleteById(boardId);
     }
 
     /**

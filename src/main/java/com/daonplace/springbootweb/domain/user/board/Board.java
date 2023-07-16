@@ -50,10 +50,10 @@ public class Board {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "board_status")
-    private BoardStatus status;
+    private BoardStatus boardStatus;
 
     private int count;
-
+    
     //==비즈니스 로직==//
     public void countUp() {
         this.count++;
@@ -61,22 +61,6 @@ public class Board {
 
     public void countDown() {
         this.count--;
-    }
-
-    /**
-     * 게시글 삭제
-     */
-    public void cancel() {
-        this.setStatus(BoardStatus.cancel);
-        this.countDown();
-    }
-
-    /**
-     * 게시글 복구
-     */
-    public void rollback() {
-        this.setStatus(BoardStatus.write);
-        this.countUp();
     }
 
 }

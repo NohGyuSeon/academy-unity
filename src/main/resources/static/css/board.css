@@ -1,0 +1,55 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+.meta-data {
+  margin-bottom: 20px;
+}
+
+.meta-data span {
+  font-weight: bold;
+}
+
+.content {
+  white-space: pre-wrap;
+}
+
+.button-container {
+  text-align: center;
+}
+
+.button-container .btn {
+  margin: 10px;
+  padding: 10px 30px;
+  border-radius: 30px;
+}
+
+.btn-edit {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-cancel {
+  background-color: #6c757d;
+  color: #fff;
+}
