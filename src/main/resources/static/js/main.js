@@ -1,22 +1,3 @@
-$(document).ready(function () {
-  // 페이지 로드 시 AJAX 요청 전송
-  $.ajax({
-    url: "/user/boards",
-    type: "GET",
-    success: function (response) {
-      // 요청이 성공적으로 처리된 경우
-      console.log("게시글 리스트 가져오기 성공");
-      // 서버에서 받은 데이터를 기반으로 리스트 업데이트
-      updateBoardList(response);
-    },
-    error: function (xhr, status, error) {
-      // 요청 처리 중 에러가 발생한 경우
-      console.log("게시글 리스트 가져오기 실패");
-      // 에러 처리 동작 구현
-    }
-  });
-});
-
 function updateBoardList(boards) {
   var boardListContainer = $("#board-list-container");
   boardListContainer.empty(); // 기존 리스트 내용 초기화
@@ -31,4 +12,19 @@ function updateBoardList(boards) {
     listItem.append("<p>" + board.boardStatus + "</p>");
     boardListContainer.append(listItem);
   }
+}
+
+function executeSearch() {
+  var keyword = document.getElementById("search-input").value;
+  searchBoards(keyword);
+}
+
+function searchBoards(keyword) {
+  fetch(`/api/user/search?keyword=${keyword}`)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    window.location.href = `/user/main?keyword=${keyword}`; // 검색어를 포함한 URL로 리다이렉트
+  })
+  .catch(error => console.log("게시판 검색 중 에러가 발생하였습니다: ", error));
 }

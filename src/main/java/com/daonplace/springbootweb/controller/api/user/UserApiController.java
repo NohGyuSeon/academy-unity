@@ -23,18 +23,19 @@ public class UserApiController {
 
     private final UserService userService;
 
-    @PutMapping("/{userId}")
-    public CMRespDto<?> update(@PathVariable Long userId, @Valid UserDto userDto,
+    @PutMapping("/updateProfile/{userId}")
+    public CMRespDto<?> updateProfile(@PathVariable Long userId, @Valid UserDto userDto,
         BindingResult bindingResult,
         @AuthenticationPrincipal PrincipalDetails principalDetails) {
         log.info("call update /api/user/{userId}");
 
-        User userEntity = userService.update(userId, userDto.toEntity());
+        User userEntity = userService.updateUser(userId, userDto.toEntity());
 
         principalDetails.setUser(userEntity); // 세션 정보 변경
 
-        return new CMRespDto<>(1, "회원수정 완료",
+        return new CMRespDto<>(1, "회원 수정 완료",
             userEntity); // 응답 시 userEntity의 모든 getter 함수가 호출되고 JSON으로 파싱하여 응답
     }
+
 
 }

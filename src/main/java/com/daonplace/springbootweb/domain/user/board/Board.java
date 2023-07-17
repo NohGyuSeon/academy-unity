@@ -3,6 +3,7 @@ package com.daonplace.springbootweb.domain.user.board;
 import static javax.persistence.FetchType.LAZY;
 
 import com.daonplace.springbootweb.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -36,6 +37,7 @@ public class Board {
     @Column(name = "board_id")
     private Long id;
 
+    @JsonIgnore
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "user_id")
     private User user;

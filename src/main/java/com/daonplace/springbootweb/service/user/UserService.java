@@ -35,7 +35,7 @@ public class UserService {
      * 사용자 수정
      */
     @Transactional
-    public User update(Long userId, User user) {
+    public User updateUser(Long userId, User user) {
         User userEntity = getUserById(userId);
 
         userEntity.setEmail(user.getEmail());

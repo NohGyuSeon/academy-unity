@@ -1,13 +1,14 @@
 package com.daonplace.springbootweb.controller.user;
 
+import com.daonplace.springbootweb.config.auth.PrincipalDetails;
 import com.daonplace.springbootweb.domain.user.User;
 import com.daonplace.springbootweb.domain.user.board.Board;
 import com.daonplace.springbootweb.dto.auth.SignupDto;
 import com.daonplace.springbootweb.service.user.BoardService;
 import com.daonplace.springbootweb.service.user.UserService;
-import java.awt.print.Book;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,40 +30,35 @@ public class BoardController {
      * 게시글 상세 폼
      */
     @GetMapping("/user/board/{userId}/{boardId}")
-    public String view(@PathVariable("userId") Long userId, @PathVariable("boardId") Long boardId, Model model) {
+    public String detailBoardForm(@PathVariable("userId") Long userId, @PathVariable("boardId") Long boardId,
+        @AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
         log.info("call get /user/board/{userId}/{boardId}");
 
-        User user = userService.getUserById(userId);
+        User user = principalDetails.getUser();
         Board board = boardService.getBoard(boardId);
+
         model.addAttribute("board", board);
         model.addAttribute("user", user);
+
         return "user/board";
     }
 
     /**
      * 게시글 업데이트 폼
      */
-    @GetMapping("/user/update/{userId}")
-    public String updateForm(@PathVariable("userId") Long userId, Model model) {
-        log.info("call get /user/update/{userId}");
+    @GetMapping("/user/updateBoard/{userId}/{boardId}")
+    public String updateBoardForm(@PathVariable("userId") Long userId, @PathVariable("boardId") Long boardId,
+        @AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
+        log.info("call get /user/updateBoard/{userId}/{boardId}");
 
+        User user = principalDetails.getUser();
+        Board board = boardService.getBoard(boardId);
 
+        model.addAttribute("board", board);
+        model.addAttribute("user", user);
 
-        return "user/profile";
+        return "user/updateBoard";
     }
-
-    /**
-     * 게시글 업데이트 POST
-     */
-    @PostMapping("/user/update/{userId}")
-    public String updateForm(@PathVariable Long userId, @ModelAttribute("dto") SignupDto dto) {
-        log.info("call post /user/update/{userId}");
-
-        //== 구현 로직 ==//
-
-        return "user/profile";
-    }
-
 
 
 

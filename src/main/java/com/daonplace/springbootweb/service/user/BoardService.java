@@ -34,22 +34,22 @@ public class BoardService {
     }
 
     /**
-     * 게시글 수정
+     * 게시글 수정 B
      */
     @Transactional
-    public Board updateBoard(Long boardId, BoardDto boardDto) {
+    public Board updateBoard(Long boardId, Board board) {
         // 영속화
         // 일단 찾아내고, 못찾으면 예외 처리
-        Board board = getBoard(boardId);
+        Board boardEntity = getBoard(boardId);
 
         // 영속화된 객체를 수정 - 더티체킹 (업데이트 완료)
-        board.setTitle(boardDto.getTitle());
-        board.setContent(boardDto.getContent());
-        board.setBoardType(boardDto.getBoardType());
-        board.setBoardStatus(boardDto.getBoardStatus());
+        boardEntity.setTitle(board.getTitle());
+        boardEntity.setContent(board.getContent());
+        boardEntity.setBoardType(board.getBoardType());
+        boardEntity.setBoardStatus(board.getBoardStatus());
 
         // 더티체킹으로 인한 자동 업데이트 완료 (JPA의 최대 장점)
-        return board;
+        return boardEntity;
     }
 
     /**
@@ -78,6 +78,14 @@ public class BoardService {
         Board board = boardRepository.findById(boardId)
             .orElseThrow(() -> new CustomApiException("찾을 수 없는 게시글입니다."));
         return board;
+    }
+
+    /**
+     * 게시글 제목으로 검색 가져오기
+     */
+    @Transactional
+    public List<Board> getBoardsByTitleContaining(String keyword) {
+        return boardRepository.findByTitleContaining(keyword);
     }
 
 }

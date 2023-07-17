@@ -1,7 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-<%@ include file="../layout/header.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!--프로필 섹션-->
 <section class="profile">
@@ -11,7 +8,7 @@
 <!--로그아웃, 회원정보변경 모달-->
 <div class="modal-info" onclick="modaalInfo()">
 	<div class="modal">
-		<button class="btn" onclick="location.href='/user/${dto.user.id}/update'">회원정보 변경</button>
+		<button class="btn" onclick="location.href='/user/updateProfile/${user.id}'">회원정보 변경</button>
 		<button class="btn" onclick="location.href='/logout'">로그아웃</button>
 		<button class="btn" onclick="location.href='/'">취소버튼</button>
 	</div>

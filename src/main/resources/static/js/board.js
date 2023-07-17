@@ -12,7 +12,7 @@ function deleteBoard(userId, boardId) {
       window.location.href = "/user/main";
     },
     error: function(xhr, status, error) {
-      console.log("Error occurred while deleting board:", error);
+      console.log("게시판 삭제 중 에러가 발생하였습니다: ", error);
     }
   });
 }

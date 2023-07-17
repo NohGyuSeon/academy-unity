@@ -14,7 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 
 @Controller
 @RequiredArgsConstructor
@@ -28,11 +31,20 @@ public class MainController {
      * 메인 폼
      */
     @GetMapping({"/", "/user/main"})
-    public String mainForm(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+    public String mainForm(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails,
+        @RequestParam(value = "keyword", required = false) String keyword) {
         log.info("call get /user/main");
 
         User user = principalDetails.getUser();
-        List<Board> boards = boardService.getBoards();
+        List<Board> boards;
+
+        if (keyword != null) {
+            boards = boardService.getBoardsByTitleContaining(keyword);
+            log.info("call contain");
+        } else {
+            boards = boardService.getBoards();
+            log.info("call not containt");
+        }
 
         model.addAttribute("boards", boards);
         model.addAttribute("user", user);
@@ -65,6 +77,24 @@ public class MainController {
 
         return "redirect:/user/main"; // 메인 페이지로 리다이렉트
     }
+
+
+
+
+    /**
+     * 프로필 폼
+     */
+    @GetMapping("/user/profile/{userId}")
+    public String profileForm(@PathVariable int userId) {
+        log.info("call get /user/profile/{userId}");
+
+        return "user/profile";
+    }
+
+
+
+
+
 
 
 

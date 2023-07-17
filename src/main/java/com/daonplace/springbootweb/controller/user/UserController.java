@@ -1,10 +1,14 @@
 package com.daonplace.springbootweb.controller.user;
 
+import com.daonplace.springbootweb.config.auth.PrincipalDetails;
+import com.daonplace.springbootweb.domain.user.User;
 import com.daonplace.springbootweb.service.user.BoardService;
 import com.daonplace.springbootweb.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -17,14 +21,20 @@ public class UserController {
     private final BoardService boardService;
 
     /**
-     * 프로필 폼
+     * 사용자 업데이트 폼
      */
-    @GetMapping("/user/profile/{userId}")
-    public String profileForm(@PathVariable int userId) {
-        log.info("call get /user/profile/{userId}");
+    @GetMapping("/user/updateProfile/{userId}")
+    public String updateProfile(@PathVariable Long userId,
+        @AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
+        log.info("call get /user/profile/update/{userId}");
 
-        return "user/profile";
+        User user = principalDetails.getUser();
+
+        model.addAttribute("user", user);
+
+        return "user/updateProfile";
     }
+
 
 
 

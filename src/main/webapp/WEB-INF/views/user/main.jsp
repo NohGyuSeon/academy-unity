@@ -21,12 +21,10 @@
 
             <div class="buttons-container">
                 <!-- 게시글 등록 버튼 -->
-                <button class="btn add-board-btn" onclick="location.href='/user/addBoard'">게시글 등록
-                </button>
+                <button class="btn add-board-btn" onclick="location.href='/user/addBoard'">게시글 등록</button>
 
                 <!-- 사용자 프로필 버튼 -->
-                <button class="btn profile-btn" onclick="location.href='/user/profile'">사용자 프로필
-                </button>
+                <button class="btn profile-btn" onclick="location.href='/user/profile/${user.id}'">사용자 프로필</button>
             </div>
 
             <div class="search-container">
@@ -41,8 +39,8 @@
 
                 <!-- 검색 기능 -->
                 <div class="search-bar">
-                    <input type="text" placeholder="게시글 제목 검색">
-                    <button class="btn search-btn" onclick="search()">검색</button>
+                    <input type="text" id="search-input" placeholder="게시글 제목 검색">
+                    <button class="btn search-btn" onclick="executeSearch()">검색</button>
                 </div>
             </div>
 
@@ -65,7 +63,7 @@
         </section>
     </main>
 </div>
-<%--<script src="/js/main.js"></script>--%>
+<script src="/js/main.js"></script>
 </body>
 
 </html>

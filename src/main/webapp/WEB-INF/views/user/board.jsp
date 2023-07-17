@@ -22,7 +22,9 @@
     </div>
     <div class="content">${board.content}</div>
     <div class="button-container">
-        <a class="btn btn-edit" href="/user/updateBoard/${user.id}/${board.id}">게시글 수정</a>
+        <form class="btn-form" action="/user/updateBoard/${userId}/${boardId}" method="POST">
+            <button class="btn btn-edit" type="button" onclick="goToUpdateBoard(${user.id}, ${board.id})">게시글 수정</button>
+        </form>
         <button class="btn btn-delete" onclick="confirmDelete(${user.id}, ${board.id})">게시글 삭제</button>
         <a class="btn btn-cancel" href="/user/main">취소</a>
     </div>
