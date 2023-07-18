@@ -48,7 +48,7 @@
 
                 <!--비밀번호 찾기 시작-->
                 <div class="password__reset">
-                    <a href="/password">비밀번호 찾기</a>
+                    <a href="/auth/password">비밀번호 찾기</a>
                 </div>
                 <!--비밀번호 찾기 종료-->
 

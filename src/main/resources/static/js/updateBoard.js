@@ -1,19 +1,25 @@
-function updateBoard(userId, boardId) {
+function updateBoard(userId, boardId, event) {
+  event.preventDefault(); // 폼태그 액션 막기
+
+  let data = $("#updateBoardForm").serialize(); // key=value
+
+  console.log(data);
+
   $.ajax({
-    url: "/api/user/updateBoard/" + userId + "/" + boardId,
     type: "POST",
-    data: {
-      title: $("input[name='title']").val(),
-      content: $("textarea[name='content']").val(),
-      boardType: $("select[name='boardType']").val(),
-      boardStatus: $("select[name='boardStatus']").val()
-    },
-    success: function(response) {
-      // 게시글 수정이 성공한 경우 처리할 내용
-      window.location.href = "/user/board/" + userId + "/" + boardId;
-    },
-    error: function(xhr, status, error) {
-      console.log("게시글 수정 중 에러가 발생하였습니다: ", error);
+    url: '/api/user/updateBoard/' + userId + '/' + boardId,
+    data: data,
+    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+    dataType: "json"
+  }).done(res => { // HttpStatus 상태코드 200번대
+    console.log("성공", res);
+    // 게시글 수정이 성공한 경우 처리할 내용
+    location.href = '/user/board/' + userId + '/' + boardId;
+  }).fail(error => { // HttpStatus 상태코드 200번대가 아닐 때
+    if (error.data == null) {
+      alert(error.responseJSON.message);
+    } else {
+      alert(JSON.stringify(error.responseJSON.data));
     }
   });
 }

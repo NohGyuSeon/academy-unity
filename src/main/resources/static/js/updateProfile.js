@@ -1,13 +1,25 @@
-// 수정 중
-function updateProfile(userId) {
+function updateProfile(userId, event) {
+  event.preventDefault(); // 폼태그 액션 막기
+
+  let data = $("#updateProfileForm").serialize(); // key=value
+
+  console.log(data);
+
   $.ajax({
-    url: "/api/user/updateProfile/" + userId,
     type: "POST",
-    success: function () {
-      window.location.href = "/user/updateProfile/" + userId;
-    },
-    error: function (xhr, status, error) {
-      console.log("게시판 수정 중 에러가 발생하였습니다: ", error);
+    url: "/api/user/updateProfile" + userId,
+    data: data,
+    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+    dataType: "json",
+  }).done(res => { // HttpStatus 상태코드 200번대
+    console.log("성공", res);
+    // 사용자 수정이 성공한 경우 처리할 내용
+    location.href = '/user/updateProfile/' + userId;
+  }).fail(error => { // HttpStatus 상태코드 200번대 아닐 때
+    if (error.data == null) {
+      alert(error.responseJSON.message);
+    } else {
+      alert(JSON.stringify(error.responseJSON.data));
     }
   });
 }

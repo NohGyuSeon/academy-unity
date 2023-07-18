@@ -51,22 +51,14 @@ public class BoardApiController {
     @PostMapping("/updateBoard/{userId}/{boardId}")
     public CMRespDto<?> updateBoard(@PathVariable Long userId, @PathVariable Long boardId,
         @Valid BoardDto boardDto, BindingResult bindingResult,
-        @AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
+        @AuthenticationPrincipal PrincipalDetails principalDetails) {
         log.info("call post /api/user/updateBoard/{userId}/{boardId}");
 
-        User user = principalDetails.getUser();
-
         Board boardEntity = boardService.updateBoard(boardId, boardDto.toEntity());
-
-        model.addAttribute("user", user);
 
         return new CMRespDto<>(1, "게시글 수정 완료", boardEntity);
         // 응답 시 boardEntity 모든 getter 함수가 호출되고 JSON으로 파싱하여 응답, 이때 User와의 상호참조로 인한
         // 스택오버플로우가 발생하기 때문에, Board 엔티티의 User 필드에 @JsonIgnore를 추가해야 한다.
     }
-
-
-
-
 
 }

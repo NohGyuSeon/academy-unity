@@ -2,6 +2,7 @@
 <%@ page import="com.daonplace.springbootweb.domain.user.board.BoardType" %>
 <%@ page import="com.daonplace.springbootweb.domain.user.board.BoardStatus" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="../layout/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +21,9 @@
                 <div class="updateBoard__form">
                     <h2>게시글 수정</h2>
                     <!--게시글 입력 폼 시작-->
-                    <form id="updateBoardForm" class="updateBoard__input" action="/api/user/updateBoard/${userId}/${boardId}" method="POST">
-                        <input type="hidden" name="boardId" value="${board.id}">
+                    <form id="updateBoardForm" class="updateBoard__input">
+                        <input type="hidden" id="userId" value="${principal.user.id}">
+                        <input type="hidden" id="boardId" value="${board.id}">
                         <input type="text" name="title" placeholder="제목" value="${board.title}" required="required">
                         <textarea name="content" placeholder="내용" required="required">${board.content}</textarea>
                         <% Board board = (Board) request.getAttribute("board"); %>
@@ -43,8 +45,8 @@
                             </option>
                             <% } %>
                         </select>
-                        <button class="update-btn" onclick="updateBoard(${userId}, ${board.id})">수정</button>
-                        <button class="cancel-btn" onclick="location.href='/user/board/${userId}/${board.id}'">취소</button>
+                        <button class="btn update-btn" onclick="updateBoard(${userId}, ${boardId}, event)">수정</button>
+                        <button class="btn btn-cancel" onclick="location.href='/user/updateBoard/${principal.user.id}/${board.id}'">취소</button>
                     </form>
                     <!--게시글 입력 폼 종료-->
                 </div>

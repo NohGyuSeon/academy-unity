@@ -21,6 +21,7 @@ repositories {
 	mavenCentral()
 }
 
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -38,6 +39,9 @@ dependencies {
 
 	implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-taglibs'
+
 	testImplementation 'junit:junit:4.13.2'
 	runtimeOnly 'com.mysql:mysql-connector-j' // 개발 환경 DB(MySQL)
 	runtimeOnly 'com.h2database:h2' // 테스트 환경 DB(H2)
@@ -46,7 +50,6 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 }
-
 tasks.named('test') {
 	useJUnitPlatform()
 }

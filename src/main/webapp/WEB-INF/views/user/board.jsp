@@ -22,11 +22,9 @@
     </div>
     <div class="content">${board.content}</div>
     <div class="button-container">
-        <form class="btn-form" action="/user/updateBoard/${userId}/${boardId}" method="POST">
-            <button class="btn btn-edit" type="button" onclick="goToUpdateBoard(${user.id}, ${board.id})">게시글 수정</button>
-        </form>
+        <button class="btn btn-edit" type="button" onclick="goToUpdateBoard(${user.id}, ${board.id})">게시글 수정</button>
         <button class="btn btn-delete" onclick="confirmDelete(${user.id}, ${board.id})">게시글 삭제</button>
-        <a class="btn btn-cancel" href="/user/main">취소</a>
+        <button class="btn btn-cancel" onclick="location.href='/'">취소</button>
     </div>
 </div>
 <script src="/js/board.js"></script>

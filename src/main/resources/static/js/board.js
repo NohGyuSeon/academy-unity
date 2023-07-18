@@ -9,7 +9,7 @@ function deleteBoard(userId, boardId) {
     url: "/api/user/deleteBoard/" + userId + "/" + boardId,
     type: "DELETE",
     success: function() {
-      window.location.href = "/user/main";
+      window.location.href = '/user/main';
     },
     error: function(xhr, status, error) {
       console.log("게시판 삭제 중 에러가 발생하였습니다: ", error);

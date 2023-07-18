@@ -5,12 +5,14 @@ import com.daonplace.springbootweb.domain.user.User;
 import com.daonplace.springbootweb.dto.CMRespDto;
 import com.daonplace.springbootweb.dto.user.UserDto;
 import com.daonplace.springbootweb.service.user.UserService;
+import java.util.stream.Collectors;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,19 +25,18 @@ public class UserApiController {
 
     private final UserService userService;
 
-    @PutMapping("/updateProfile/{userId}")
-    public CMRespDto<?> updateProfile(@PathVariable Long userId, @Valid UserDto userDto,
-        BindingResult bindingResult,
+    @PostMapping("/updateProfile/{userId}")
+    public CMRespDto<?> updateProfile(@PathVariable Long userId,
+        @Valid UserDto userDto, BindingResult bindingResult,
         @AuthenticationPrincipal PrincipalDetails principalDetails) {
-        log.info("call update /api/user/{userId}");
+        log.info("call update /api/user/updateProfile/{userId}");
 
         User userEntity = userService.updateUser(userId, userDto.toEntity());
 
         principalDetails.setUser(userEntity); // 세션 정보 변경
 
-        return new CMRespDto<>(1, "회원 수정 완료",
-            userEntity); // 응답 시 userEntity의 모든 getter 함수가 호출되고 JSON으로 파싱하여 응답
+        return new CMRespDto<>(1, "프로필 수정 완료", userEntity);
+        // 응답 시 userEntity의 모든 getter 함수가 호출되고 JSON으로 파싱하여 응답
     }
-
 
 }

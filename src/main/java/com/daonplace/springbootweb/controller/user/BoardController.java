@@ -3,7 +3,6 @@ package com.daonplace.springbootweb.controller.user;
 import com.daonplace.springbootweb.config.auth.PrincipalDetails;
 import com.daonplace.springbootweb.domain.user.User;
 import com.daonplace.springbootweb.domain.user.board.Board;
-import com.daonplace.springbootweb.dto.auth.SignupDto;
 import com.daonplace.springbootweb.service.user.BoardService;
 import com.daonplace.springbootweb.service.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -11,12 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor

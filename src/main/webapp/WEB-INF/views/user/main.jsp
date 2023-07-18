@@ -1,6 +1,7 @@
-<%@ page import="com.daonplace.springbootweb.domain.user.board.Board" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.daonplace.springbootweb.domain.user.User" %>
+<%@ page import="com.daonplace.springbootweb.domain.user.board.Board" %>
+<%@ page import="com.daonplace.springbootweb.domain.user.board.BoardStatus" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,6 +38,14 @@
                     <option value="제보/알림">제보/알림</option>
                 </select>
 
+<%--                <select name="boardStatus" required="required">--%>
+<%--                    <option value="" disabled selected>게시글 상태 선택</option>--%>
+<%--                        <% for (BoardStatus boardStatus : boardStatuses) { %>--%>
+<%--                    <option value="<%= boardStatus.name() %>" <% if (board.getBoardStatus() == boardStatus) { %>selected<% } %>>--%>
+<%--                        <%= boardStatus.name() %>--%>
+<%--                    </option>--%>
+<%--                        <% } %>--%>
+
                 <!-- 검색 기능 -->
                 <div class="search-bar">
                     <input type="text" id="search-input" placeholder="게시글 제목 검색">
@@ -63,6 +72,7 @@
         </section>
     </main>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/main.js"></script>
 </body>
 
