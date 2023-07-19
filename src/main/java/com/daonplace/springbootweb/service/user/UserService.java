@@ -5,6 +5,7 @@ import com.daonplace.springbootweb.domain.user.UserStatus;
 import com.daonplace.springbootweb.dto.user.UserDto;
 import com.daonplace.springbootweb.handler.ex.DuplicateUserException;
 import com.daonplace.springbootweb.handler.ex.NotFoundException;
+import com.daonplace.springbootweb.handler.ex.NotMatchException;
 import com.daonplace.springbootweb.repository.user.UserRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -106,6 +107,18 @@ public class UserService {
     @Transactional
     public void deleteUser(Long userId) {
         userRepository.deleteById(userId);
+    }
+
+    /**
+     * 사용자 비밀번호 가져오기 (answer)
+     */
+    public String getPasswordByAnswer(Long userId, String answer) {
+        User user = getUserById(userId);
+        if (user.getAnswer().equals(answer)) {
+            return bCryptPasswordEncoder.encode(user.getPassword());
+        } else {
+            throw new NotMatchException("정답이 아닙니다.");
+        }
     }
 
     /**

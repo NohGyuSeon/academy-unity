@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Slf4j
 public class UserController {
 
-    private final UserService userService;
-    private final BoardService boardService;
-
     /**
      * 사용자 업데이트 폼
      */

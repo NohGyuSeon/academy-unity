@@ -5,7 +5,6 @@ import com.daonplace.springbootweb.domain.user.User;
 import com.daonplace.springbootweb.domain.user.board.Board;
 import com.daonplace.springbootweb.dto.user.BoardDto;
 import com.daonplace.springbootweb.service.user.BoardService;
-import com.daonplace.springbootweb.service.user.UserService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,14 +16,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 
 @Controller
 @RequiredArgsConstructor
 @Slf4j
 public class MainController {
 
-    private final UserService userService;
     private final BoardService boardService;
 
     /**
@@ -75,9 +72,6 @@ public class MainController {
 
         return "redirect:/user/main"; // 메인 페이지로 리다이렉트
     }
-
-
-
 
     /**
      * 프로필 폼

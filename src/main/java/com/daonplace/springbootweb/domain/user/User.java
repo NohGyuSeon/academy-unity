@@ -42,6 +42,12 @@ public class User {
     @Column(name = "user_status")
     private UserStatus status;
 
+    @Column(nullable = false)
+    private String hint;
+
+    @Column(nullable = false)
+    private String answer;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Board> boards = new ArrayList<>();
 

@@ -5,23 +5,19 @@ import com.daonplace.springbootweb.domain.user.User;
 import com.daonplace.springbootweb.dto.CMRespDto;
 import com.daonplace.springbootweb.dto.user.UserDto;
 import com.daonplace.springbootweb.service.user.UserService;
-import java.util.stream.Collectors;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,16 +26,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UserApiController {
 
     private final UserService userService;
-
-    @GetMapping("/search")
-    public CMRespDto<?> searchBoards(@RequestParam String keyword) {
-        log.info("call get /api/user/search");
-
-        CMRespDto<String> res = new CMRespDto<>(1, "게시판 검색 완료", keyword);
-        log.info("call api " + res);
-
-        return res;
-    }
 
     /**
      * 사용자 업데이트 POST
@@ -65,14 +51,13 @@ public class UserApiController {
      * 사용자 삭제 DELETE
      */
     @DeleteMapping("/deleteUser/{userId}")
-    public CMRespDto<?> deleteBoard(@PathVariable Long userId, RedirectAttributes redirectAttributes,
-        SessionStatus sessionStatus) {
+    public CMRespDto<?> deleteBoard(@PathVariable Long userId) {
         log.info("call delete /api/user/deleteUser/{userId}");
 
         // 사용자 삭제 로직 구현
         userService.deleteUser(userId);
 
-
+        SecurityContextHolder.clearContext(); // 세션 무효화 처리
 
         CMRespDto<Long> res = new CMRespDto<>(1, "사용자 삭제 완료", userId);
         log.info("call api " + res);

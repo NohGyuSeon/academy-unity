@@ -15,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,21 +26,21 @@ public class AuthController {
     private final AuthService authService;
     private final UserService userService;
 
-    @GetMapping("auth/signin")
+    @GetMapping("/auth/signin")
     public String signinForm() {
-        log.info("call get auth/signin");
+        log.info("call get /auth/signin");
 
         return "auth/signin";
     }
 
-    @GetMapping("auth/signup")
+    @GetMapping("/auth/signup")
     public String signupForm() {
         log.info("call get auth/signup");
 
         return "auth/signup";
     }
 
-    @PostMapping("auth/signup")
+    @PostMapping("/auth/signup")
     public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) {
         log.info("call post auth/signup");
 
@@ -63,25 +62,32 @@ public class AuthController {
         return "auth/signin"; // 회원가입 완료 시, 로그인 폼으로 돌아감
     }
 
-    @GetMapping("auth/password")
+    @GetMapping("/auth/password")
     public String passwordForm() {
         log.info("call get auth/password");
 
-        return "/auth/password";
+        return "auth/password";
     }
 
-    @PostMapping("auth/password")
-    public String passwordForm(@RequestParam String email, Model model) {
-        log.info("call post auth/password");
+//    @PostMapping("/auth/passwordHint")
+//    public String password(@RequestParam String email, Model model) {
+//        log.info("call post auth/password");
+//
+//        User user = userService.getUserByEmail(email);
+//
+//        model.addAttribute(user);
+//
+//        return "auth/passwordHint";
+//    }
 
-        User user = userService.getUserByEmail(email);
+    @GetMapping("/auth/passwordHint")
+    public String passwordHintForm(@RequestParam String email) {
+        log.info("call get auth/passwordHint");
 
-        model.addAttribute(user);
+        userService.getUserByEmail(email);
 
-        return "/auth/passwordHint";
+        return "auth/passwordHint";
     }
-
-
 
 
 

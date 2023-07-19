@@ -1,4 +1,4 @@
-function updateBoardList(boards) {
+/*function updateBoardList(boards) {
   var boardListContainer = $("#board-list-container");
   boardListContainer.empty(); // 기존 리스트 내용 초기화
 
@@ -12,7 +12,7 @@ function updateBoardList(boards) {
     listItem.append("<p>" + board.boardStatus + "</p>");
     boardListContainer.append(listItem);
   }
-}
+}*/
 
 function executeSearch() {
   var keyword = document.getElementById("search-input").value;

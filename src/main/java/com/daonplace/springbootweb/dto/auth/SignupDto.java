@@ -12,14 +12,20 @@ public class SignupDto {
     private String email;
     @NotBlank
     private String password;
-    @Size(min = 2, max = 20)
+    @Size(min = 1, max = 20)
     private String username;
+    @Size(min = 1, max = 20)
+    private String hint;
+    @Size(min = 1, max = 20)
+    private String answer;
 
     public User toEntity() {
         return User.builder()
             .email(email)
             .password(password)
             .username(username)
+            .hint(hint)
+            .answer(answer)
             .build();
     }
 }

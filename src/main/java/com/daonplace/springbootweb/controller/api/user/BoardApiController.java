@@ -1,12 +1,9 @@
 package com.daonplace.springbootweb.controller.api.user;
 
 import com.daonplace.springbootweb.config.auth.PrincipalDetails;
-import com.daonplace.springbootweb.domain.user.User;
 import com.daonplace.springbootweb.domain.user.board.Board;
 import com.daonplace.springbootweb.dto.CMRespDto;
-import com.daonplace.springbootweb.dto.auth.SignupDto;
 import com.daonplace.springbootweb.dto.user.BoardDto;
-import com.daonplace.springbootweb.repository.user.BoardRepository;
 import com.daonplace.springbootweb.service.user.BoardService;
 import com.daonplace.springbootweb.service.user.UserService;
 import javax.validation.Valid;
@@ -14,12 +11,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -30,6 +28,19 @@ public class BoardApiController {
 
     private final BoardService boardService;
     private final UserService userService;
+
+    /**
+     * 게시글 검색 GET
+     */
+    @GetMapping("/search")
+    public CMRespDto<?> searchBoards(@RequestParam String keyword) {
+        log.info("call get /api/user/search");
+
+        CMRespDto<String> res = new CMRespDto<>(1, "게시판 검색 완료", keyword);
+        log.info("call api " + res);
+
+        return res;
+    }
 
     /**
      * 게시글 업데이트 POST

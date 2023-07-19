@@ -26,6 +26,8 @@
                         <input type="email" name="email" placeholder="이메일" required="required" />
                         <input type="password" name="password" placeholder="비밀번호" required="required" />
                         <input type="text" name="username" placeholder="별명" required="required" maxlength="30"/>
+                        <input type="text" name="hint" placeholder="비밀번호 힌트" required="required" maxlength="30"/>
+                        <input type="text" name="answer" placeholder="힌트 정답" required="required" maxlength="30"/>
                         <button>가입</button>
                     </form>
                     <!--회원가입 인풋 종료-->
