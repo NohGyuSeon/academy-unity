@@ -19,7 +19,8 @@
 	</div>
 </div>
 <div class="button-container">
-	<button class="btn btn-edit" type="button" onclick="goToUpdateProfile(${principal.user.id})">프로필 수정</button>
+	<button class="btn btn-edit" type="button" onclick="goToUpdateProfile(${userId})">프로필 수정</button>
+	<button class="btn btn-delete" type="button" onclick="confirmDelete(${userId})">사용자 삭제</button>
 	<button class="btn btn-logout" onclick="location.href='/logout'">로그아웃</button>
 	<button class="btn btn-cancel" onclick="location.href='/user/main'">취소</button>
 </div>

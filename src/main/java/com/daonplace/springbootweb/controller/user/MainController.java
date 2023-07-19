@@ -40,10 +40,8 @@ public class MainController {
 
         if (keyword != null) {
             boards = boardService.getBoardsByTitleContaining(keyword);
-            log.info("call contain");
         } else {
             boards = boardService.getBoards();
-            log.info("call not containt");
         }
 
         model.addAttribute("boards", boards);

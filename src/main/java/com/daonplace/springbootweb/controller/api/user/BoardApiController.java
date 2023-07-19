@@ -32,20 +32,6 @@ public class BoardApiController {
     private final UserService userService;
 
     /**
-     * 게시글 삭제 DELETE
-     */
-    @DeleteMapping("/deleteBoard/{userId}/{boardId}")
-    public ResponseEntity<Void> deleteBoard(@PathVariable Long userId, @PathVariable Long boardId) {
-        log.info("call delete /api/user/deleteBoard/{userId}/{boardId}");
-
-        // 게시글 삭제 로직 구현
-        log.info("boardId={}", boardId);
-        boardService.deleteBoard(boardId);
-
-        return ResponseEntity.ok().build();
-    }
-
-    /**
      * 게시글 업데이트 POST
      */
     @PostMapping("/updateBoard/{userId}/{boardId}")
@@ -59,6 +45,20 @@ public class BoardApiController {
         return new CMRespDto<>(1, "게시글 수정 완료", boardEntity);
         // 응답 시 boardEntity 모든 getter 함수가 호출되고 JSON으로 파싱하여 응답, 이때 User와의 상호참조로 인한
         // 스택오버플로우가 발생하기 때문에, Board 엔티티의 User 필드에 @JsonIgnore를 추가해야 한다.
+    }
+
+    /**
+     * 게시글 삭제 DELETE
+     */
+    @DeleteMapping("/deleteBoard/{userId}/{boardId}")
+    public ResponseEntity<Void> deleteBoard(@PathVariable Long userId, @PathVariable Long boardId) {
+        log.info("call delete /api/user/deleteBoard/{userId}/{boardId}");
+
+        // 게시글 삭제 로직 구현
+        log.info("boardId={}", boardId);
+        boardService.deleteBoard(boardId);
+
+        return ResponseEntity.ok().build();
     }
 
 }

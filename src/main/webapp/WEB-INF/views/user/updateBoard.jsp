@@ -46,7 +46,7 @@
                             <% } %>
                         </select>
                         <button class="btn update-btn" onclick="updateBoard(${userId}, ${boardId}, event)">수정</button>
-                        <button class="btn btn-cancel" onclick="location.href='/user/updateBoard/${principal.user.id}/${board.id}'">취소</button>
+                        <button class="btn btn-cancel" type="button" onclick="goToBoard(${userId}, ${boardId})">취소</button>
                     </form>
                     <!--게시글 입력 폼 종료-->
                 </div>

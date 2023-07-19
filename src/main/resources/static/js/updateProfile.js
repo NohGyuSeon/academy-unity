@@ -23,3 +23,7 @@ function updateProfile(userId, event) {
     }
   });
 }
+
+function goToProfile(userId) {
+  window.location.href = "/user/profile/" + userId;
+}

@@ -20,11 +20,3 @@ function deleteUser(userId) {
 function goToUpdateProfile(userId) {
   window.location.href = "/user/updateProfile/" + userId;
 }
-
-function modalInfo() {
-  $(".modal-info").css("display", "none");
-}
-
-function closePopup(obj) {
-  $(obj).css("display", "none");
-}

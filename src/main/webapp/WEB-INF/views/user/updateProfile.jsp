@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <button class="btn btn-edit" onclick="updateProfile(${userId}, event)">수정</button>
-                        <button class="btn btn-cancel" onclick="location.href='/user/profile/${principal.user.id}'">취소</button>
+                        <button class="btn btn-cancel" type="button" onclick="goToProfile(${userId})">취소</button>
                     </form>
                     <!--사용자 프로필 입력 폼 종료-->
                 </div>

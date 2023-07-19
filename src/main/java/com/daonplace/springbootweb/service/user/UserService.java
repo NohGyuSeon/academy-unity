@@ -104,10 +104,8 @@ public class UserService {
      * 사용자 삭제
      */
     @Transactional
-    public Long deleteUser(Long userId) {
+    public void deleteUser(Long userId) {
         userRepository.deleteById(userId);
-
-        return userId;
     }
 
     /**

@@ -1,4 +1,4 @@
-function updateBoard(userId, boardId, event) {
+function updateBoard(userId, boardId, evssent) {
   event.preventDefault(); // 폼태그 액션 막기
 
   let data = $("#updateBoardForm").serialize(); // key=value
@@ -22,4 +22,8 @@ function updateBoard(userId, boardId, event) {
       alert(JSON.stringify(error.responseJSON.data));
     }
   });
+}
+
+function goToBoard(userId, boardId) {
+  window.location.href = "/user/board/" + userId + "/" + boardId;
 }

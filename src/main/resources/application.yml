@@ -1,0 +1,55 @@
+# MySQL 설정
+
+server:
+  address: localhost
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springbootWebProject?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&useSSL=true
+    username: root
+    password: 991020
+
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+  devtools:
+    livereload:
+      enabled: true
+  thymeleaf:
+    cache: false
+
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+#        show_sql: true
+        format_sql: true
+
+  security:
+    user:
+      name: root
+      password: 991020
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
+
+# createDatabaseIfNotExist: 데이터베이스가 존재하지 않으면 자동으로 생성
+# useUnicode: 유니코드 사용 여부 설정
+# characterEncoding: 문자열 인코딩 종류 설정
+# characterSetResult: 결과값의 인코딩 종류 설정
+# useSSL: SSL 사용여부 설정
+
+# spring.jpa.properties.hibernate.show_sql : 하이버네이트가 실행한 모든 SQL문을 콘솔로 출력
+# spring.jpa.properties.hibernate.format_sql : SQL문을 가독성 있게 표현
+
+# org.hibernate.SQL: debug: Hibernate가 실행한 SQL 쿼리를 출력, 데이터베이스에 보내는 쿼리문을 확인 가능
+# org.hibernate.type: trace: Hibernate에서 사용되는 매개변수의 값에 대한 디버그 정보를 출력, 쿼리에 바인딩된 매개변수 값과 해당 매개변수의 데이터 타입을 확인 가능

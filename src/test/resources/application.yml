@@ -1,0 +1,13 @@
+# Test DB 설정
+
+#server:
+#  address: localhost
+#  port: 8080
+
+spring:
+  # H2 DB In-Memory 방식 사용
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
