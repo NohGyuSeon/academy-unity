@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,4 +24,13 @@ public class PrincipalDetailsService implements UserDetailsService {
 
         return new PrincipalDetails(user);
     }
+
+    @Transactional
+    public User setPassword(User user, String password) {
+
+        user.setPassword(password);
+
+        return user;
+    }
+
 }
