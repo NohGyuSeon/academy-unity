@@ -2,7 +2,6 @@ package com.daonplace.springbootweb.service.user;
 
 import com.daonplace.springbootweb.domain.user.User;
 import com.daonplace.springbootweb.domain.user.UserStatus;
-import com.daonplace.springbootweb.dto.user.UserDto;
 import com.daonplace.springbootweb.handler.ex.DuplicateUserException;
 import com.daonplace.springbootweb.handler.ex.NotFoundException;
 import com.daonplace.springbootweb.repository.user.UserRepository;
@@ -53,10 +52,9 @@ public class UserService {
      * 중복 사용자 검증
      */
     private void validationDuplicateUser(User user) {
-        userRepository.findByEmail(user.getEmail())
-            .ifPresent(existingUser -> {
-                throw new DuplicateUserException("이미 존재하는 사용자입니다.");
-            });
+        userRepository.findByEmail(user.getEmail()).ifPresent(existingUser -> {
+            throw new DuplicateUserException("이미 존재하는 사용자입니다.");
+        });
     }
 
     /**
@@ -109,6 +107,14 @@ public class UserService {
     }
 
     /**
+     * 사용자 가져오기 (answer)
+     */
+    public boolean getUserByAnswer(Long userId, String answer) {
+        User user = getUserById(userId);
+        return user.getAnswer().equals(answer);
+    }
+
+    /**
      * 사용자 전체 가져오기
      */
     public List<User> getUsers() {
@@ -119,18 +125,16 @@ public class UserService {
      * 사용자 가져오기 (id)
      */
     public User getUserById(Long userId) {
-        User user = userRepository.findById(userId)
+        return userRepository.findById(userId)
             .orElseThrow(() -> new NotFoundException("존재하지 않는 사용자입니다."));
-        return user;
     }
 
     /**
      * 사용자 가져오기 (email)
      */
     public User getUserByEmail(String email) {
-        User user = userRepository.findByEmail(email)
+        return userRepository.findByEmail(email)
             .orElseThrow(() -> new NotFoundException("존재하지 않는 사용자입니다."));
-        return user;
     }
 
 }

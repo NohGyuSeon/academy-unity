@@ -1,7 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.daonplace.springbootweb.domain.user.User" %>
 <%@ page import="com.daonplace.springbootweb.domain.user.board.Board" %>
-<%@ page import="com.daonplace.springbootweb.domain.user.board.BoardStatus" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">

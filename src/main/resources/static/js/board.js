@@ -6,10 +6,10 @@ function confirmDelete(userId, boardId) {
 
 function deleteBoard(userId, boardId) {
   $.ajax({
-    url: "/api/user/deleteBoard/" + userId + "/" + boardId,
+    url: `/api/user/deleteBoard/${userId}/${boardId}`,
     type: "DELETE",
     success: function() {
-      window.location.href = '/user/main';
+      window.location.href = `/user/main`;
     },
     error: function(xhr, status, error) {
       console.log("게시판 삭제 중 에러가 발생하였습니다: ", error);
@@ -18,5 +18,5 @@ function deleteBoard(userId, boardId) {
 }
 
 function goToUpdateBoard(userId, boardId) {
-  window.location.href = "/user/updateBoard/" + userId + "/" + boardId;
+  window.location.href = `/user/updateBoard/${userId}/${boardId}`;
 }

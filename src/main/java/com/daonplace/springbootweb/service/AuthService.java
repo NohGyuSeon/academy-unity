@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class AuthService {
 
@@ -22,9 +23,8 @@ public class AuthService {
         // 비밀번호 암호화 진행
         String rawPassword = user.getPassword();
         String encodePassword = bCryptPasswordEncoder.encode(rawPassword);
-        user.setPassword(encodePassword);
 
-        // 이후 관리자 방향성에 따른 구현 -> 사용자의 상태로 넣을 것인지, 다른 엔티티로 볼 것인지?
+        user.setPassword(encodePassword);
 
         // 회원가입 진행
         Long saveId = userService.join(user);
@@ -32,4 +32,13 @@ public class AuthService {
 
         return findOne;
     }
+
+    @Transactional
+    public User getUpdateUser(User user, String rawPassword) {
+        String encodePassword = bCryptPasswordEncoder.encode(rawPassword);
+        user.setPassword(encodePassword);
+
+        return user;
+    }
+
 }

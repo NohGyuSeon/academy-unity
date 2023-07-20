@@ -27,21 +27,21 @@ public class AuthController {
     private final AuthService authService;
     private final UserService userService;
 
-    @GetMapping("auth/signin")
+    @GetMapping("/auth/signin")
     public String signinForm() {
-        log.info("call get auth/signin");
+        log.info("call get /auth/signin");
 
         return "auth/signin";
     }
 
-    @GetMapping("auth/signup")
+    @GetMapping("/auth/signup")
     public String signupForm() {
         log.info("call get auth/signup");
 
         return "auth/signup";
     }
 
-    @PostMapping("auth/signup")
+    @PostMapping("/auth/signup")
     public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) {
         log.info("call post auth/signup");
 
@@ -63,29 +63,31 @@ public class AuthController {
         return "auth/signin"; // 회원가입 완료 시, 로그인 폼으로 돌아감
     }
 
-    @GetMapping("auth/password")
+    @GetMapping("/auth/password")
     public String passwordForm() {
         log.info("call get auth/password");
 
-        return "/auth/password";
+        return "auth/password";
     }
 
-    @PostMapping("auth/password")
-    public String passwordForm(@RequestParam String email, Model model) {
-        log.info("call post auth/password");
+    @GetMapping("/auth/passwordHint")
+    public String passwordHintForm(@RequestParam String email, Model model) {
+        log.info("call get auth/passwordHint");
 
         User user = userService.getUserByEmail(email);
+        model.addAttribute("user", user);
 
-        model.addAttribute(user);
-
-        return "/auth/passwordHint";
+        return "auth/passwordHint";
     }
 
+    @GetMapping("/auth/passwordUpdate/{userId}")
+    public String passwordUpdateForm(@PathVariable Long userId, Model model) {
+        log.info("call get auth/passwordUpdate/{userId}");
 
+        User user = userService.getUserById(userId);
+        model.addAttribute("user", user);
 
-
-
-
-
+        return "auth/passwordUpdate";
+    }
 
 }

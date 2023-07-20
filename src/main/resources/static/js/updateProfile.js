@@ -7,14 +7,14 @@ function updateProfile(userId, event) {
 
   $.ajax({
     type: "POST",
-    url: "/api/user/updateProfile" + userId,
+    url: `/api/user/updateProfile/${userId}`,
     data: data,
     contentType: "application/x-www-form-urlencoded; charset=utf-8",
-    dataType: "json",
+    dataType: "json"
   }).done(res => { // HttpStatus 상태코드 200번대
     console.log("성공", res);
     // 사용자 수정이 성공한 경우 처리할 내용
-    location.href = '/user/updateProfile/' + userId;
+    location.href = `/user/profile/${userId}`;
   }).fail(error => { // HttpStatus 상태코드 200번대 아닐 때
     if (error.data == null) {
       alert(error.responseJSON.message);
@@ -25,5 +25,5 @@ function updateProfile(userId, event) {
 }
 
 function goToProfile(userId) {
-  window.location.href = "/user/profile/" + userId;
+  window.location.href = `/user/profile/${userId}`;
 }
