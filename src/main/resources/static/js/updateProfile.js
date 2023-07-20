@@ -13,7 +13,7 @@ function updateProfile(userId, event) {
     dataType: "json"
   }).done(res => { // HttpStatus 상태코드 200번대
     console.log("성공", res);
-    // 사용자 수정이 성공한 경우 처리할 내용
+    // 사용자 수정이 성공한 경우 처리할`` 내용
     location.href = `/user/profile/${userId}`;
   }).fail(error => { // HttpStatus 상태코드 200번대 아닐 때
     if (error.data == null) {

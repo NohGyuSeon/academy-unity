@@ -4,12 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.daonplace.springbootweb.domain.admin.Admin;
 import com.daonplace.springbootweb.domain.admin.Magazine;
-import com.daonplace.springbootweb.domain.admin.Publish;
-import com.daonplace.springbootweb.domain.admin.PublishStatus;
-import com.daonplace.springbootweb.repository.admin.PublishRepository;
 import javax.persistence.EntityManager;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

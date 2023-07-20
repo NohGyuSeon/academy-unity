@@ -1,7 +1,9 @@
 package com.daonplace.springbootweb.domain.admin;
 
+import com.daonplace.springbootweb.domain.user.board.Board;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Admin {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "admin_id")
@@ -24,7 +27,7 @@ public class Admin {
 
     private String password;
 
-    @OneToMany(mappedBy = "admin")
-    private List<Publish> publishes = new ArrayList<>();
+    @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Magazine> magazines = new ArrayList<>();
 
 }

@@ -2,6 +2,7 @@ package com.daonplace.springbootweb.domain.admin;
 
 import static javax.persistence.FetchType.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,9 +25,10 @@ public class Magazine {
     @Column(name = "magazine_id")
     private Long id;
 
-    @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "publish_id")
-    private Publish publish;
+    @JsonIgnore
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "admin_id")
+    private Admin admin;
 
     private String title;
 
