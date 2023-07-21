@@ -2,22 +2,36 @@ package com.daonplace.springbootweb.domain.admin;
 
 import static javax.persistence.FetchType.*;
 
+import com.daonplace.springbootweb.domain.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 
 @Entity
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
+@Builder
+@Table(name = "magazine")
 public class Magazine {
 
     @Id
@@ -27,28 +41,17 @@ public class Magazine {
 
     @JsonIgnore
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "admin_id")
-    private Admin admin;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     private String title;
 
     private String content;
 
-    private int count;
+//    private Image image;
 
-    /**
-     * 메거진 개수 증가
-     */
-    //==비즈니스 로직==//
-    public void countUp() {
-        this.count++;
-    }
-
-    /**
-     * 메거진 개수 감소
-     */
-    public void countDown() {
-        this.count--;
-    }
+    @Enumerated(EnumType.STRING)
+    @Column(name = "magazine_status")
+    private MagazineStatus magazineStatus;
 
 }

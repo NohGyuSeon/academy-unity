@@ -1,5 +1,6 @@
 package com.daonplace.springbootweb.domain.user;
 
+import com.daonplace.springbootweb.domain.admin.Magazine;
 import com.daonplace.springbootweb.domain.user.board.Board;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +49,12 @@ public class User {
     @Column(nullable = false)
     private String answer;
 
+    private boolean hasRoleAdmin;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Board> boards = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Magazine> magazines = new ArrayList<>();
 
 }

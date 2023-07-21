@@ -1,6 +1,6 @@
-<%@ page import="com.daonplace.springbootweb.domain.user.board.Board" %>
 <%@ page import="com.daonplace.springbootweb.domain.user.board.BoardType" %>
 <%@ page import="com.daonplace.springbootweb.domain.user.board.BoardStatus" %>
+<%@ page import="com.daonplace.springbootweb.domain.user.board.Board" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="../layout/header.jsp" %>
 <!DOCTYPE html>
@@ -19,7 +19,7 @@
             <article class="updateBoard__form__container">
                 <!--게시글 수정 폼 시작-->
                 <div class="updateBoard__form">
-                    <h2>게시글 수정</h2>
+                    <h2>메거진 수정</h2>
                     <!--게시글 입력 폼 시작-->
                     <form id="updateBoardForm" class="updateBoard__input">
                         <input type="hidden" id="userId" value="${principal.user.id}">
@@ -50,8 +50,11 @@
                     </form>
                     <!--게시글 입력 폼 종료-->
                 </div>
+                <!--게시글 수정 폼 종료-->
             </article>
+            <!--게시글 수정 박스 종료-->
         </section>
+        <!--게시글 수정 섹션 종료-->
     </main>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

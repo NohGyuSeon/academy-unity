@@ -92,6 +92,7 @@ public class UserService {
      * 사용자 복구
      */
     @Transactional
+
     public void rollbackUser(Long userId) {
         User user = getUserById(userId);
 

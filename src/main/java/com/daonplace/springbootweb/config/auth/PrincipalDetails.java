@@ -28,6 +28,10 @@ public class PrincipalDetails implements UserDetails {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER")); // 사용자 권한을 추가
         // 다른 권한이 있을 경우, 추가로 authorities에 권한을 추가할 수 있음.
+        if (user.isHasRoleAdmin()) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN")); // 사용자 권한을 추가
+        }
+
         return authorities;
     }
 

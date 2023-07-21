@@ -25,7 +25,7 @@ public class MainController {
     private final BoardService boardService;
 
     /**
-     * 메인 폼
+     * 사용자 메인 폼
      */
     @GetMapping({"/", "/user/main"})
     public String mainForm(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails,
@@ -44,7 +44,14 @@ public class MainController {
         model.addAttribute("boards", boards);
         model.addAttribute("user", user);
 
-        return "user/main";
+        boolean isHasRoleAdmin = principalDetails.getAuthorities().stream()
+            .anyMatch(authority -> authority.getAuthority().equals("ROLE_ADMIN"));
+
+        if (isHasRoleAdmin) {
+            return "admin/manage";
+        } else {
+            return "user/main";
+        }
     }
 
     /**
@@ -70,7 +77,7 @@ public class MainController {
         // 게시글 작성
         boardService.createBoard(boardDto, user);
 
-        return "redirect:/user/main"; // 메인 페이지로 리다이렉트
+        return "redirect:/user/main"; // 사용자 메인 페이지로 리다이렉트
     }
 
     /**
@@ -82,15 +89,5 @@ public class MainController {
 
         return "user/profile";
     }
-
-
-
-
-
-
-
-
-
-
 
 }

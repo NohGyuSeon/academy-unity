@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Slf4j
 public class BoardController {
 
-    private final UserService userService;
     private final BoardService boardService;
 
     /**
      * 게시글 상세 폼
      */
     @GetMapping("/user/board/{userId}/{boardId}")
-    public String detailBoardForm(@PathVariable("userId") Long userId, @PathVariable("boardId") Long boardId,
+    public String detailBoardForm(@PathVariable("userId") Long userId,
+        @PathVariable("boardId") Long boardId,
         @AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
         log.info("call get /user/board/{userId}/{boardId}");
 
@@ -42,7 +42,8 @@ public class BoardController {
      * 게시글 업데이트 폼
      */
     @GetMapping("/user/updateBoard/{userId}/{boardId}")
-    public String updateBoardForm(@PathVariable("userId") Long userId, @PathVariable("boardId") Long boardId,
+    public String updateBoardForm(@PathVariable("userId") Long userId,
+        @PathVariable("boardId") Long boardId,
         @AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
         log.info("call get /user/updateBoard/{userId}/{boardId}");
 
@@ -54,12 +55,5 @@ public class BoardController {
 
         return "user/updateBoard";
     }
-
-
-
-
-
-
-
 
 }

@@ -35,10 +35,14 @@ public class AuthService {
 
     @Transactional
     public User getUpdateUser(User user, String rawPassword) {
-        String encodePassword = bCryptPasswordEncoder.encode(rawPassword);
-        user.setPassword(encodePassword);
-
+        user.setPassword(encode(rawPassword));
         return user;
+    }
+
+    @Transactional
+    public String encode(String rawPassword) {
+        String encodePassword = bCryptPasswordEncoder.encode(rawPassword);
+        return encodePassword;
     }
 
 }

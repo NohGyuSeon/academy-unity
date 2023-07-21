@@ -22,6 +22,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable() // CSRF 토큰 검사를 비활성화
             .authorizeRequests() // 인가 설정
             .antMatchers("/", "/user/**", "/admin/**").authenticated() // 인증이 필요한 페이지
+            .antMatchers("/user/**").hasRole("USER") // 사용자 권한 설정
+            .antMatchers("/admin/**").hasRole("ADMIN") // 관리자 권한 설정
             .anyRequest().permitAll() // 그 외의 요청은 허가함
             .and()
             .formLogin() // 로그인 폼 활성화
@@ -32,8 +34,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 //            .antMatchers("/auth/**", "/css/**", "/images/**", "/js/**")
 //            .permitAll() // 로그인 관련 요청은 모두 허용
-//            .antMatchers("/user/**").hasRole("USER")
-//            .antMatchers("/admin/**").hasRole("ADMIN")
 //            .anyRequest().authenticated() // 그 외의 요청은 인증이 필요함
 //            .and()
 //            .formLogin() // 폼 로그인 활성화

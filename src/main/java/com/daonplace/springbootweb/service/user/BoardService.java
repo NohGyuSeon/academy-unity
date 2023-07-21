@@ -34,7 +34,7 @@ public class BoardService {
     }
 
     /**
-     * 게시글 수정 B
+     * 게시글 수정
      */
     @Transactional
     public Board updateBoard(Long boardId, Board board) {
