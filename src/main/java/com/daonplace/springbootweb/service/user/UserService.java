@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final UserService userService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
@@ -53,7 +52,7 @@ public class UserService {
     public User getUserProfile(Long userId) {
 //        UserProfileDto dto = new UserProfileDto();
 
-        User userEntity = userService.getUserById(userId);
+        User userEntity = getUserById(userId);
 
 //        dto.setUser(userEntity);
 //        dto.setImageCount(userEntity.getImages().size());
