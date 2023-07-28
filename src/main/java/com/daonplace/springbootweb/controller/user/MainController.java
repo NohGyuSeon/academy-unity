@@ -4,7 +4,9 @@ import com.daonplace.springbootweb.config.auth.PrincipalDetails;
 import com.daonplace.springbootweb.domain.user.User;
 import com.daonplace.springbootweb.domain.user.board.Board;
 import com.daonplace.springbootweb.dto.user.BoardDto;
+import com.daonplace.springbootweb.dto.user.UserProfileDto;
 import com.daonplace.springbootweb.service.user.BoardService;
+import com.daonplace.springbootweb.service.user.UserService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MainController {
 
     private final BoardService boardService;
+    private final UserService userService;
 
     /**
      * 사용자 메인 폼
@@ -84,8 +87,14 @@ public class MainController {
      * 프로필 폼
      */
     @GetMapping("/user/profile/{userId}")
-    public String profileForm(@PathVariable int userId) {
+    public String profileForm(@PathVariable Long userId, Model model) {
         log.info("call get /user/profile/{userId}");
+
+//        UserProfileDto userProfileDto = userService.profileDto(userId);
+        User userEntity = userService.getUserProfile(userId);
+
+        model.addAttribute("user");
+
 
         return "user/profile";
     }

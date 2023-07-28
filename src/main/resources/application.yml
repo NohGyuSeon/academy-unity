@@ -26,7 +26,7 @@ spring:
     database: mysql
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
 #        show_sql: true
@@ -41,6 +41,9 @@ logging:
   level:
     org.hibernate.SQL: debug
     org.hibernate.type: trace
+
+file:
+  path: /Users/kusun1020/Downloads/SpringBoot_Web_Project/
 
 # createDatabaseIfNotExist: 데이터베이스가 존재하지 않으면 자동으로 생성
 # useUnicode: 유니코드 사용 여부 설정

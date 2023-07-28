@@ -2,6 +2,7 @@ package com.daonplace.springbootweb.service.user;
 
 import com.daonplace.springbootweb.domain.user.User;
 import com.daonplace.springbootweb.domain.user.UserStatus;
+import com.daonplace.springbootweb.dto.user.UserProfileDto;
 import com.daonplace.springbootweb.handler.ex.DuplicateUserException;
 import com.daonplace.springbootweb.handler.ex.NotFoundException;
 import com.daonplace.springbootweb.repository.user.UserRepository;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final UserService userService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
@@ -45,6 +47,18 @@ public class UserService {
 
         userEntity.setPassword(encodePassword);
 
+        return userEntity;
+    }
+
+    public User getUserProfile(Long userId) {
+//        UserProfileDto dto = new UserProfileDto();
+
+        User userEntity = userService.getUserById(userId);
+
+//        dto.setUser(userEntity);
+//        dto.setImageCount(userEntity.getImages().size());
+
+//        return dto;
         return userEntity;
     }
 
