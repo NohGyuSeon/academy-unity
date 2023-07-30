@@ -4,6 +4,7 @@ import com.daonplace.springbootweb.domain.user.User;
 import com.daonplace.springbootweb.dto.auth.SignupDto;
 import com.daonplace.springbootweb.handler.ex.CustomValidationException;
 import com.daonplace.springbootweb.service.AuthService;
+import com.daonplace.springbootweb.service.api.RestTemplateService;
 import com.daonplace.springbootweb.service.user.UserService;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +31,6 @@ public class AuthController {
     @GetMapping("/auth/signin")
     public String signinForm() {
         log.info("call get /auth/signin");
-
         return "auth/signin";
     }
 

@@ -1,6 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.daonplace.springbootweb.domain.user.User" %>
 <%@ page import="com.daonplace.springbootweb.domain.user.board.Board" %>
+<%@ page import="com.daonplace.springbootweb.dto.api.AirPollutionInfo" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +19,9 @@
         <!--메인 페이지 섹션 시작-->
         <section class="main">
             <h1>빛깔 웹페이지에 오신걸 환영합니다!</h1>
+            <p>pm10: <%=((AirPollutionInfo)request.getAttribute("airPollutionInfo")).getPm10Value()%></p>
+            <p>pm25: <%=((AirPollutionInfo)request.getAttribute("airPollutionInfo")).getPm25Value()%></p>
+
 
             <div class="buttons-container">
                 <!-- 게시글 등록 버튼 -->

@@ -3,8 +3,10 @@ package com.daonplace.springbootweb.controller.user;
 import com.daonplace.springbootweb.config.auth.PrincipalDetails;
 import com.daonplace.springbootweb.domain.user.User;
 import com.daonplace.springbootweb.domain.user.board.Board;
+import com.daonplace.springbootweb.dto.api.AirPollutionInfo;
 import com.daonplace.springbootweb.dto.user.BoardDto;
 import com.daonplace.springbootweb.dto.user.UserProfileDto;
+import com.daonplace.springbootweb.service.api.RestTemplateService;
 import com.daonplace.springbootweb.service.user.BoardService;
 import com.daonplace.springbootweb.service.user.UserService;
 import java.util.List;
@@ -26,6 +28,7 @@ public class MainController {
 
     private final BoardService boardService;
     private final UserService userService;
+    private final RestTemplateService restTemplateService;
 
     /**
      * 사용자 메인 폼
@@ -43,9 +46,11 @@ public class MainController {
         } else {
             boards = boardService.getBoards();
         }
+        AirPollutionInfo airPollutionInfo = restTemplateService.getAirPollution();
 
         model.addAttribute("boards", boards);
         model.addAttribute("user", user);
+        model.addAttribute("airPollutionInfo", airPollutionInfo);
 
         boolean isHasRoleAdmin = principalDetails.getAuthorities().stream()
             .anyMatch(authority -> authority.getAuthority().equals("ROLE_ADMIN"));

@@ -6,6 +6,7 @@ import com.daonplace.springbootweb.util.Script;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.UnknownContentTypeException;
 
 @RestController
 @ControllerAdvice
