@@ -18,10 +18,9 @@
     <main class="Main">
         <!--메인 페이지 섹션 시작-->
         <section class="main">
-            <h1>빛깔 웹페이지에 오신걸 환영합니다!</h1>
+            <h1>Feel free to share your thoughts on Academy Unity!</h1>
             <p>pm10: <%=((AirPollutionInfo)request.getAttribute("airPollutionInfo")).getPm10Value()%></p>
             <p>pm25: <%=((AirPollutionInfo)request.getAttribute("airPollutionInfo")).getPm25Value()%></p>
-
 
             <div class="buttons-container">
                 <!-- 게시글 등록 버튼 -->
@@ -37,7 +36,7 @@
                     <option value="전체">전체</option>
                     <option value="자유게시판">자유게시판</option>
                     <option value="질문&답변">질문&답변</option>
-                    <option value="육아">육아</option>
+                    <option value="기술">기술</option>
                     <option value="제보/알림">제보/알림</option>
                 </select>
 

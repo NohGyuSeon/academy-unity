@@ -28,7 +28,7 @@
                             <option value="" disabled selected>게시판 선택</option>
                             <option value="free">자유게시판</option>
                             <option value="qna">질문&답변</option>
-                            <option value="parenting">육아</option>
+                            <option value="technology">기술</option>
                             <option value="alert">제보/알림</option>
                         </select>
                         <select name="boardStatus" required="required">
