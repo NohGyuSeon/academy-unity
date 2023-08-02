@@ -24,23 +24,19 @@ public class DummyDataLoader implements CommandLineRunner {
 
     private void createAdminUser(String email, String username, String password, String hint, String answer) {
         // 이메일과 사용자명을 사용하여 이미 존재하는 사용자를 찾기
-        Optional<User> existingEmailUser = userRepository.findByEmail(email);
-        Optional<User> existingUsernameUser = userRepository.findByUsername(username);
-
-        if (existingEmailUser.isPresent() || existingUsernameUser.isPresent()) {
-            // 이미 해당 이메일 또는 사용자명을 가진 사용자가 존재하는 경우, 아무 작업하지 않음;
+        if (userRepository.findByEmail(email).isPresent() || userRepository.findByUsername(username).isPresent()) {
             return;
+        } else {
+            // 해당 이메일과 사용자명을 가진 사용자가 존재하지 않는 경우, 새로운 User 객체를 생성하여 저장
+            User adminUser = User.builder()
+                .email(email)
+                .password(authService.encode(password))
+                .username(username)
+                .hint(hint)
+                .answer(answer)
+                .hasRoleAdmin(true)
+                .build();
+            userRepository.save(adminUser);
         }
-
-        // 해당 이메일과 사용자명을 가진 사용자가 존재하지 않는 경우, 새로운 User 객체를 생성하여 저장
-        User adminUser = User.builder()
-            .email(email)
-            .password(authService.encode(password))
-            .username(username)
-            .hint(hint)
-            .answer(answer)
-            .hasRoleAdmin(true)
-            .build();
-        userRepository.save(adminUser);
     }
 }

@@ -44,12 +44,21 @@ dependencies {
 
 	testImplementation 'junit:junit:4.13.2'
 	runtimeOnly 'com.mysql:mysql-connector-j' // 개발 환경 DB(MySQL)
-	runtimeOnly 'com.h2database:h2' // 테스트 환경 DB(H2)
+//	runtimeOnly 'com.h2database:h2' // 테스트 환경 DB(H2)
 	annotationProcessor('org.projectlombok:lombok')
 	testAnnotationProcessor('org.projectlombok:lombok')
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 }
+
+bootJar {
+	archivesBaseName = 'academy_unity'
+	archiveFileName = 'academy_unity.jar'
+//	 duplicatesStrategy = 'fail' // 중복 리소스가 발생하면 빌드를 실패시킴
+//	 duplicatesStrategy = 'warn' // 중복 리소스가 발생하면 경고 출력
+//	 duplicatesStrategy = 'exclude' // 중복 리소스를 제외하고 하나만 포함시킴
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }

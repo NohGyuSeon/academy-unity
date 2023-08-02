@@ -1,11 +1,15 @@
 # Test DB 설정
 
-#server:
-#  address: localhost
-#  port: 8080
+server:
+  address: localhost
+  port: 8080
 
 spring:
-  # H2 DB In-Memory 방식 사용
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springbootWebProject?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&useSSL=true
+    username: root
+    password: 991020
 
 logging:
   level:
